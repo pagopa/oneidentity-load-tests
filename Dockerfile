@@ -1,5 +1,5 @@
 #FROM golang:1.18-alpine as builder
-FROM ubuntu:22.04 as builder
+FROM ubuntu:22.04@sha256:58b87898e82351c6cf9cf5b9f3c20257bb9e2dcf33af051e12ce532d7f94e3fe as builder
 ARG DEBIAN_FRONTEND=noninteractive
 
 #WORKDIR $GOPATH/src/go.k6.io/k6
@@ -29,7 +29,7 @@ RUN curl -O https://s3.amazonaws.com/amazoncloudwatch-agent/debian/amd64/latest/
     rm -rf /tmp/*
 
 
-FROM alpine:3.15
+FROM alpine:3.15@sha256:19b4bcc4f60e99dd5ebdca0cbce22c503bbcff197549d7e19dab4f22254dc864
 RUN apk add --no-cache ca-certificates
 COPY --from=builder /root/go/bin/k6 /usr/bin/k6
 

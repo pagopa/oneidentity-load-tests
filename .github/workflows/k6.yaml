@@ -1,0 +1,44 @@
+name: K6 Performance Tests
+on:
+  workflow_dispatch:
+    inputs:
+      script:
+        type: choice
+        default: 'IdP_keys.js'
+        options:
+          - IdP_keys.js
+          - All_IdP.js
+      logLevel:
+        description: 'Log level'
+        required: true
+        default: 'warning'
+        type: choice
+        options:
+          - warning
+ 
+jobs:
+  performance-tests:
+    runs-on: ubuntu-latest
+    env:
+      K6_BROWSER_ENABLED: false
+      
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+    
+      - name: Setup k6
+        uses: grafana/setup-k6-action@v1
+
+      - name: Run k6 test
+        uses: grafana/run-k6-action@v1
+        with:
+          path: |
+            ./src/${{ inputs.script }}
+
+      - name: Upload Report
+        uses: actions/upload-artifact@v4
+        with:
+          name: k6-browser-report-summary
+          path: TestSummaryReport.html
+
+   

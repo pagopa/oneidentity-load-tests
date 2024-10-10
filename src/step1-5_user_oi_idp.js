@@ -5,6 +5,7 @@ import { Counter } from 'k6/metrics';
 import { URL } from 'https://jslib.k6.io/url/1.0.0/index.js';
 import { parseHTML } from "k6/html";
 import encoding from 'k6/encoding';
+import { htmlReport } from "https://raw.githubusercontent.com/benc-uk/k6-reporter/2.4.0/dist/bundle.js";
 
 export let options = {
   // virtual users

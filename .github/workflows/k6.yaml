@@ -4,8 +4,9 @@ on:
     inputs:
       script:
         type: choice
-        default: 'IdP_keys.js'
+        default: 'step1-5_user_oi_idp.js'
         options:
+          - step1-5_user_oi_idp.js
           - IdP_keys.js
           - All_IdP.js
       logLevel:

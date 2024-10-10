@@ -99,3 +99,10 @@ function arrayBufferToString(buffer) {
     }
     return binary;
 }
+
+// Funzione per creare un Report html
+export function handleSummary(data) {
+  return {
+      'TestSummaryReport.html': htmlReport(data, { debug: true })
+  };
+}

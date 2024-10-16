@@ -15,7 +15,7 @@ export const options = {
   scenarios: {
     perftest: {
       executor: 'per-vu-iterations',
-	  vus: 30, // Numero di utenti virtuali
+	  vus: 5, // Numero di utenti virtuali
       iterations: 1, // Numero di iterazioni per utente virtuale
       options: {
         browser: {
@@ -104,12 +104,13 @@ export default async function() {
   
   // Apri la pagina iniziale di Login
   await page.goto('https://dev.oneid.pagopa.it/login?response_type=CODE&scope=openid&client_id=8U61NU_F8NMFDnTdW5zUt04MJ7wYRD_WgQbihbeenFg&state=dev&nonce=011701879fd734d1486b8a6435025b465&redirect_uri=https%3A%2F%2F442zl6z6sbdqprefkazmp6dr3y0nmnby.lambda-url.eu-south-1.on.aws%2Fclient%2Fcb');
- 
+  sleep(5);
   
   // Clicca sul pulsante "Entra con SPID"
   const spidButton = page.locator('#spidButton');
   spidButton.click();
   page.waitForNavigation();
+  sleep(5);
   
   // Scelta IdP e Click sul pulsante IdP "Demo"
   const demoButton = page.locator('[id="https://demo.spid.gov.it"]');
@@ -126,7 +127,7 @@ export default async function() {
   const entraButton = page.locator('[class="italia-it-button italia-it-button-size-m button-spid spacer-top-1"]');
   entraButton.click();
   page.waitForNavigation();
-  sleep(4);
+  sleep(5);
   
   // Clicca sul pulsante "Conferma" per l'invio dei dati
   const confermaButton = page.locator('[value="Conferma"]');

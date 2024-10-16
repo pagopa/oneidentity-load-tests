@@ -1,4 +1,4 @@
-name: K6 Load Tests
+name: K6 Load Tests Create RequestID
 on:
   workflow_dispatch:
     inputs:

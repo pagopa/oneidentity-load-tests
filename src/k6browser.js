@@ -14,9 +14,11 @@ import encoding from 'k6/encoding';
 export const options = {
   scenarios: {
     perftest: {
-      executor: 'per-vu-iterations',
-	  vus: 3, // Numero di utenti virtuali
-      iterations: 1, // Numero di iterazioni per utente virtuale
+      //executor: 'per-vu-iterations',
+	  executor: 'constant-vus',
+	  vus: 50, // Numero di utenti virtuali
+	  duration: '7m',
+      //iterations: 1, // Numero di iterazioni per utente virtuale
       options: {
         browser: {
           type: 'chromium',
@@ -103,16 +105,18 @@ export default async function() {
   const page = browser.newPage();
   
   // Apri la pagina iniziale di Login
-  await page.goto('https://dev.oneid.pagopa.it/login?response_type=CODE&scope=openid&client_id=8U61NU_F8NMFDnTdW5zUt04MJ7wYRD_WgQbihbeenFg&state=dev&nonce=011701879fd734d1486b8a6435025b465&redirect_uri=https%3A%2F%2F442zl6z6sbdqprefkazmp6dr3y0nmnby.lambda-url.eu-south-1.on.aws%2Fclient%2Fcb');
- 
+  await page.goto('https://uat.oneid.pagopa.it/login?response_type=CODE&scope=openid&client_id=SRdqzGXh9rQNXMT8jZsp8SfkGFH_3WoDFADrPwpVmcI&state=uat&nonce=011701879fd734d1486b8a6435025b465&redirect_uri=https%3A%2F%2F442zl6z6sbdqprefkazmp6dr3y0nmnby.lambda-url.eu-south-1.on.aws%2Fclient%2Fcb');
+  sleep(5);
   
   // Clicca sul pulsante "Entra con SPID"
   const spidButton = page.locator('#spidButton');
   spidButton.click();
   page.waitForNavigation();
+  sleep(5);
   
-  // Scelta IdP e Click sul pulsante IdP "Demo"
-  const demoButton = page.locator('[id="https://demo.spid.gov.it"]');
+  // Scelta IdP e Click sul pulsante IdP "Demo
+  //const demoButton = page.locator('[id="https://demo.spid.gov.it"]');
+  const demoButton = page.locator('[id="https://validator.dev.oneid.pagopa.it/demo"]');
   demoButton.click();
   page.waitForNavigation();
 
@@ -126,14 +130,14 @@ export default async function() {
   const entraButton = page.locator('[class="italia-it-button italia-it-button-size-m button-spid spacer-top-1"]');
   entraButton.click();
   page.waitForNavigation();
-  sleep(4);
+  sleep(5);
   
   // Clicca sul pulsante "Conferma" per l'invio dei dati
   const confermaButton = page.locator('[value="Conferma"]');
   confermaButton.click();
   page.waitForNavigation();
   
-  sleep(5);
+  sleep(10);
   //page.close()  
 }
 

@@ -4,11 +4,12 @@ on:
     inputs:
       script:
         type: choice
-        default: 'step1-5_user_oi_idp.js'
+        default: 'k6browser.js'
         options:
           - step1-5_user_oi_idp.js
           - IdP_keys.js
           - All_IdP.js
+          - k6browser.js
       logLevel:
         description: 'Log level'
         required: true

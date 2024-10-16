@@ -4,11 +4,9 @@ on:
     inputs:
       script:
         type: choice
-        default: 'step1-5_user_oi_idp.js'
+        default: 'k6browser.js'
         options:
-          - step1-5_user_oi_idp.js
-          - IdP_keys.js
-          - All_IdP.js
+          - k6browser.js
       logLevel:
         description: 'Log level'
         required: true
@@ -31,10 +29,8 @@ jobs:
         uses: grafana/setup-k6-action@v1
 
       - name: Run k6 test
-        uses: grafana/run-k6-action@v1
-        with:
-          path: |
-            ./src/${{ inputs.script }}
+        working-directory: ./src/
+        run: K6_BROWSER_ARGS='no-sandbox' K6_BROWSER_HEADLESS=true k6 run ${{ inputs.script }}
 
       - name: Upload Report
         uses: actions/upload-artifact@v4

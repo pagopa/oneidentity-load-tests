@@ -134,7 +134,7 @@ export default async function() {
   page.waitForNavigation();
   
   sleep(5);
-  page.close()  
+  //page.close()  
 }
 
 // Funzione per convertire ArrayBuffer in stringa

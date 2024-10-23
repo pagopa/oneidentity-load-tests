@@ -17,7 +17,7 @@ export const options = {
       //executor: 'per-vu-iterations',
 	  executor: 'constant-vus',
 	  vus: 30, // Numero di utenti virtuali
-	  duration: '60s',
+	  duration: '5m',
       //iterations: 1, // Numero di iterazioni per utente virtuale
       options: {
         browser: {

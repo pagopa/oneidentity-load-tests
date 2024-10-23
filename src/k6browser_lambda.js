@@ -16,7 +16,7 @@ export const options = {
     perftest: {
       //executor: 'per-vu-iterations',
 	  executor: 'constant-vus',
-	  vus: 10, // Numero di utenti virtuali
+	  vus: 30, // Numero di utenti virtuali
 	  duration: '60s',
       //iterations: 1, // Numero di iterazioni per utente virtuale
       options: {

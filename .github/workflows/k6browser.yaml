@@ -4,8 +4,9 @@ on:
     inputs:
       script:
         type: choice
-        default: 'k6browser.js'
+        default: 'k6browser_lambda.js'
         options:
+          - k6browser_lambda.js
           - k6browser.js
       logLevel:
         description: 'Log level'

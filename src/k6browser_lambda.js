@@ -14,11 +14,11 @@ import encoding from 'k6/encoding';
 export const options = {
   scenarios: {
     perftest: {
-      //executor: 'per-vu-iterations',
-	  executor: 'constant-vus',
+    executor: 'per-vu-iterations',
+	  //executor: 'constant-vus',
 	  vus: 100, // Numero di utenti virtuali
-	  duration: '5m',
-      //iterations: 1, // Numero di iterazioni per utente virtuale
+	  //duration: '5m',
+    iterations: 3, // Numero di iterazioni per utente virtuale
       options: {
         browser: {
           type: 'chromium',
@@ -52,36 +52,8 @@ export default async function() {
   //const demoButton = page.locator('[id="https://5ucp2co2zvqle6tcyrx4i5se7q0xdkni.lambda-url.eu-south-1.on.aws"]');
   const IdPButton = page.locator('[id="https://koz3yhpkscymaqgp4m7ceguu6m0tffuz.lambda-url.eu-south-1.on.aws"]');
   IdPButton.click();
-  //page.waitForNavigation();
-
-  //sleep(10);
+  page.waitForNavigation();
   
-  // Inserimento credenziali username e password
-  //page.locator('[name="username"]').type('cleopatra')
-  //page.locator('[name="password"]').type('password123')
-  
-  // Clicca sul pulsante "Entra con SPID"
-  //const entraButton = page.locator('[class="italia-it-button italia-it-button-size-m button-spid spacer-top-1"]');
-  //entraButton.click();
-  //page.waitForNavigation();
-  //sleep(5);
-  
-  // Clicca sul pulsante "Conferma" per l'invio dei dati
-  //const confermaButton = page.locator('[value="Conferma"]');
-  //confermaButton.click();
-  //page.waitForNavigation();
-  
-  //sleep(10);
+  sleep(10);
   //page.close()  
-}
-
-// Funzione per convertire ArrayBuffer in stringa
-function arrayBufferToString(buffer) {
-    let binary = '';
-    let bytes = new Uint8Array(buffer);
-    let len = bytes.byteLength;
-    for (let i = 0; i < len; i++) {
-        binary += String.fromCharCode(bytes[i]);
-    }
-    return binary;
 }

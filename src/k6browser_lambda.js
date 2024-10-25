@@ -21,23 +21,23 @@ export const options = {
       //iterations: 2, // Numero di iterazioni per utente virtuale
 	  
 	  //constant-arrival-rate: Mantiene un tasso costante di nuove iterazioni per un periodo di tempo.
-	  //executor: 'constant-arrival-rate',
-      //rate: 3, // 10 iterazioni al secondo
-      //duration: '1m',
-      //preAllocatedVUs: 5, // Numero di VU preallocati
+	  executor: 'constant-arrival-rate',
+    rate: 3, //  iterazioni al secondo
+    duration: '3m',
+    preAllocatedVUs: 5, // Numero di VU preallocati
 	  //
 	  
 	  //ramping-arrival-rate: Aumenta o diminuisce gradualmente il tasso di nuove iterazioni
-      executor: 'ramping-arrival-rate',
-      startRate: 1, // Inizia con 5 iterazioni al secondo
-      timeUnit: '1s', // Unità di tempo per il rate
-      preAllocatedVUs: 5, // Numero di VU preallocati
-      maxVUs: 10, // Numero massimo di VU
-      stages: [
-              { duration: '60s', target: 1 }, // Raggiunge 50 iterazioni al secondo in 5 minuti
-              { duration: '60s', target: 2 }, // Mantiene 50 iterazioni al secondo per 10 minuti
-              { duration: '60s', target: 1 }, // Riduce a 0 iterazioni al secondo in 5 minuti
-              ],
+      // executor: 'ramping-arrival-rate',
+      // startRate: 1, // Inizia con 5 iterazioni al secondo
+      // timeUnit: '1s', // Unità di tempo per il rate
+      // preAllocatedVUs: 5, // Numero di VU preallocati
+      // maxVUs: 10, // Numero massimo di VU
+      // stages: [
+      //         { duration: '60s', target: 1 }, // Raggiunge 50 iterazioni al secondo in 5 minuti
+      //         { duration: '60s', target: 2 }, // Mantiene 50 iterazioni al secondo per 10 minuti
+      //         { duration: '60s', target: 1 }, // Riduce a 0 iterazioni al secondo in 5 minuti
+      //         ],
 
       options: {
         browser: {

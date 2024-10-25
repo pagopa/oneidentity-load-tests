@@ -3,8 +3,8 @@ version: 0.2
 phases:
   pre_build:
     commands:
-      - echo Pull ghcr.io/pagopa/pdv-load-tests image..
-      - docker pull ghcr.io/pagopa/pdv-load-tests:setup-codebuild
+      - echo Pull ghcr.io/pagopa/oneidentity-load-tests image..
+      - docker pull ghcr.io/pagopa/oneidentity-load-tests:test/java-heap
       - ASSUME_ROLE_ARN="arn:aws:iam::${account_id}:role/codebuild"
       - TEMP_ROLE=$(aws sts assume-role --role-arn $ASSUME_ROLE_ARN --role-session-name AWSCodeBuild)
       - export TEMP_ROLE
@@ -13,18 +13,12 @@ phases:
       - export AWS_SESSION_TOKEN=$(echo "$${TEMP_ROLE}" | jq -r '.Credentials.SessionToken')
   build:
     commands: |
-        docker run -i -v $(pwd)/src:/src \
-        -e HOST_NAME=$HOST_NAME \
-        -e API_KEY=$API_KEY \
-        -e AWS_ACCESS_KEY_ID=$AWS_ACCESS_KEY_ID \
-        -e AWS_SECRET_ACCESS_KEY=$AWS_SECRET_ACCESS_KEY \
-        -e AWS_SESSION_TOKEN=$AWS_SESSION_TOKEN \
-        -e TEST_DURATION=$TEST_DURATION \
-        -e TEST_RATE=$TEST_RATE \
-        -e TEST_PRE_ALLOCATED_VU=$TEST_PRE_ALLOCATED_VU \
-        -e TEST_MAX_ALLOWED_VU=$TEST_MAX_ALLOWED_VU \
-        ghcr.io/pagopa/pdv-load-tests:setup-codebuild \
-        /src/$TEST_SCRIPT
+      docker run -i -v $(pwd)/src:/src \
+      -e AWS_ACCESS_KEY_ID=$AWS_ACCESS_KEY_ID \
+      -e AWS_SECRET_ACCESS_KEY=$AWS_SECRET_ACCESS_KEY \
+      -e AWS_SESSION_TOKEN=$AWS_SESSION_TOKEN \
+      ghcr.io/pagopa/oneidentity-load-tests:test/java-heap \
+      /src/k6browser_lambda.js
   post_build:
     commands:
       - echo Performance test complete

@@ -34,9 +34,9 @@ export const options = {
       preAllocatedVUs: 200, // Numero di VU preallocati
       maxVUs: 400, // Numero massimo di VU
       stages: [
-               { duration: '60s', target: 20 }, // Raggiunge 50 iterazioni al secondo in 5 minuti
-               { duration: '60s', target: 50 }, // Mantiene 50 iterazioni al secondo per 10 minuti
-               { duration: '60s', target: 20 }, // Riduce a 0 iterazioni al secondo in 5 minuti
+               { duration: '60s', target: 10 }, // Raggiunge 50 iterazioni al secondo in 5 minuti
+               { duration: '60s', target: 20 }, // Mantiene 50 iterazioni al secondo per 10 minuti
+               { duration: '60s', target: 10 }, // Riduce a 0 iterazioni al secondo in 5 minuti
                ],
 
       options: {

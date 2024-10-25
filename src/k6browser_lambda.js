@@ -28,6 +28,7 @@ export const options = {
 	  //
 	  
 	  //ramping-arrival-rate: Aumenta o diminuisce gradualmente il tasso di nuove iterazioni
+      executor: 'ramping-arrival-rate',
       startRate: 10, // Inizia con 5 iterazioni al secondo
       timeUnit: '1s', // Unità di tempo per il rate
       preAllocatedVUs: 50, // Numero di VU preallocati

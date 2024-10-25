@@ -29,14 +29,14 @@ export const options = {
 	  
 	  //ramping-arrival-rate: Aumenta o diminuisce gradualmente il tasso di nuove iterazioni
       executor: 'ramping-arrival-rate',
-      startRate: 10, // Inizia con 5 iterazioni al secondo
+      startRate: 1, // Inizia con 5 iterazioni al secondo
       timeUnit: '1s', // Unità di tempo per il rate
       preAllocatedVUs: 20, // Numero di VU preallocati
-      maxVUs: 50, // Numero massimo di VU
+      maxVUs: 10, // Numero massimo di VU
       stages: [
-              { duration: '60s', target: 20 }, // Raggiunge 50 iterazioni al secondo in 5 minuti
-              { duration: '60s', target: 40 }, // Mantiene 50 iterazioni al secondo per 10 minuti
-              { duration: '60s', target: 20 }, // Riduce a 0 iterazioni al secondo in 5 minuti
+              { duration: '60s', target: 1 }, // Raggiunge 50 iterazioni al secondo in 5 minuti
+              { duration: '60s', target: 2 }, // Mantiene 50 iterazioni al secondo per 10 minuti
+              { duration: '60s', target: 1 }, // Riduce a 0 iterazioni al secondo in 5 minuti
               ],
 
       options: {

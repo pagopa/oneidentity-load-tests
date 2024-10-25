@@ -31,7 +31,7 @@ export const options = {
       executor: 'ramping-arrival-rate',
       startRate: 1, // Inizia con 5 iterazioni al secondo
       timeUnit: '1s', // Unità di tempo per il rate
-      preAllocatedVUs: 20, // Numero di VU preallocati
+      preAllocatedVUs: 5, // Numero di VU preallocati
       maxVUs: 10, // Numero massimo di VU
       stages: [
               { duration: '60s', target: 1 }, // Raggiunge 50 iterazioni al secondo in 5 minuti

@@ -14,11 +14,30 @@ import encoding from 'k6/encoding';
 export const options = {
   scenarios: {
     perftest: {
-    executor: 'per-vu-iterations',
+      //executor: 'per-vu-iterations',
 	  //executor: 'constant-vus',
-	  vus: 100, // Numero di utenti virtuali
-	  //duration: '5m',
-    iterations: 3, // Numero di iterazioni per utente virtuale
+	  //vus: 1, // Numero di utenti virtuali
+	  //duration: '30s',
+      //iterations: 2, // Numero di iterazioni per utente virtuale
+	  
+	  //constant-arrival-rate: Mantiene un tasso costante di nuove iterazioni per un periodo di tempo.
+	  //executor: 'constant-arrival-rate',
+      //rate: 3, // 10 iterazioni al secondo
+      //duration: '1m',
+      //preAllocatedVUs: 5, // Numero di VU preallocati
+	  //
+	  
+	  //ramping-arrival-rate: Aumenta o diminuisce gradualmente il tasso di nuove iterazioni
+      startRate: 10, // Inizia con 5 iterazioni al secondo
+      timeUnit: '1s', // Unità di tempo per il rate
+      preAllocatedVUs: 50, // Numero di VU preallocati
+      maxVUs: 100, // Numero massimo di VU
+      stages: [
+              { duration: '60s', target: 50 }, // Raggiunge 50 iterazioni al secondo in 5 minuti
+              { duration: '60s', target: 100 }, // Mantiene 50 iterazioni al secondo per 10 minuti
+              { duration: '60s', target: 50 }, // Riduce a 0 iterazioni al secondo in 5 minuti
+              ],
+
       options: {
         browser: {
           type: 'chromium',
@@ -49,11 +68,11 @@ export default async function() {
   
   // Scelta IdP e Click sul pulsante IdP "Demo
   //const demoButton = page.locator('[id="https://demo.spid.gov.it"]');
-  //const demoButton = page.locator('[id="https://5ucp2co2zvqle6tcyrx4i5se7q0xdkni.lambda-url.eu-south-1.on.aws"]');
-  const IdPButton = page.locator('[id="https://koz3yhpkscymaqgp4m7ceguu6m0tffuz.lambda-url.eu-south-1.on.aws"]');
+  const IdPButton = page.locator('[id="https://5ucp2co2zvqle6tcyrx4i5se7q0xdkni.lambda-url.eu-south-1.on.aws"]');
+  //const IdPButton = page.locator('[id="https://koz3yhpkscymaqgp4m7ceguu6m0tffuz.lambda-url.eu-south-1.on.aws"]');
   IdPButton.click();
-  page.waitForNavigation();
+  page.waitForNavigation();  
   
-  sleep(10);
+  //sleep(20);
   //page.close()  
 }

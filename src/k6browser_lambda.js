@@ -10,7 +10,6 @@ import { URL } from 'https://jslib.k6.io/url/1.0.0/index.js';
 import { parseHTML } from "k6/html";
 import encoding from 'k6/encoding';
 
-
 export const options = {
   scenarios: {
     perftest: {
@@ -29,14 +28,16 @@ export const options = {
 	  
 	  //ramping-arrival-rate: Aumenta o diminuisce gradualmente il tasso di nuove iterazioni
       executor: 'ramping-arrival-rate',
-      startRate: 10, // Inizia con 5 iterazioni al secondo
+      startRate: 50, // Inizia con 5 iterazioni al secondo
       timeUnit: '1s', // Unità di tempo per il rate
-      preAllocatedVUs: 20, // Numero di VU preallocati
-      maxVUs: 50, // Numero massimo di VU
+      preAllocatedVUs: 1000, // Numero di VU preallocati
+      maxVUs: 2000, // Numero massimo di VU
       stages: [
-               { duration: '60s', target: 20 }, // Raggiunge 50 iterazioni al secondo in 5 minuti
-               { duration: '60s', target: 40 }, // Mantiene 50 iterazioni al secondo per 10 minuti
-               { duration: '60s', target: 20 }, // Riduce a 0 iterazioni al secondo in 5 minuti
+               { duration: '60s', target: 70 }, 
+               { duration: '60s', target: 150 },
+               { duration: '60s', target: 220 },
+               { duration: '60s', target: 140 },
+               { duration: '60s', target: 20 }, 
                ],
 
       options: {

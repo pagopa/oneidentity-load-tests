@@ -69,8 +69,8 @@ export default async function() {
   
   // Scelta IdP e Click sul pulsante IdP "Demo
   //const demoButton = page.locator('[id="https://demo.spid.gov.it"]');
-  const IdPButton = page.locator('[id="https://5ucp2co2zvqle6tcyrx4i5se7q0xdkni.lambda-url.eu-south-1.on.aws"]');
-  //const IdPButton = page.locator('[id="https://koz3yhpkscymaqgp4m7ceguu6m0tffuz.lambda-url.eu-south-1.on.aws"]');
+  //const IdPButton = page.locator('[id="https://5ucp2co2zvqle6tcyrx4i5se7q0xdkni.lambda-url.eu-south-1.on.aws"]');
+  const IdPButton = page.locator('[id="https://koz3yhpkscymaqgp4m7ceguu6m0tffuz.lambda-url.eu-south-1.on.aws"]');
   IdPButton.click();
   page.waitForNavigation();  
   

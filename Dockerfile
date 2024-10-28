@@ -20,17 +20,10 @@ RUN apt-get update &&  \
     apt-get install -y ca-certificates curl && \
     rm -rf /var/lib/apt/lists/*
 
-RUN curl -O https://s3.amazonaws.com/amazoncloudwatch-agent/debian/amd64/latest/amazon-cloudwatch-agent.deb && \
-    dpkg -i -E amazon-cloudwatch-agent.deb && \
-    rm -rf /tmp/*
-
-
 FROM alpine:3.15
 RUN apk add --no-cache ca-certificates
 
 COPY --from=builder /etc/ssl/certs/ca-certificates.crt /etc/ssl/certs/ca-certificates.crt
-COPY --from=builder /opt/aws/amazon-cloudwatch-agent /opt/aws/amazon-cloudwatch-agent
-COPY codebuild/amazon-cloudwatch-agent.json /opt/aws/amazon-cloudwatch-agent/etc/amazon-cloudwatch-agent.json
 ADD start.sh .
 RUN chmod +x start.sh
 

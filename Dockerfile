@@ -8,8 +8,8 @@ RUN apt-get update -y;
 RUN apt-get install wget -y
 
 # Install golang
-RUN wget https://go.dev/dl/go1.18.2.linux-amd64.tar.gz
-RUN rm -rf /usr/local/go && tar -C /usr/local -xzf go1.18.2.linux-amd64.tar.gz; rm go1.18.2.linux-amd64.tar.gz
+RUN wget https://go.dev/dl/go1.23.2.linux-amd64.tar.gz
+RUN rm -rf /usr/local/go && tar -C /usr/local -xzf go1.23.2.linux-amd64.tar.gz; rm go1.23.2.linux-amd64.tar.gz
 ENV PATH="/usr/local/go/bin:${PATH}"
 
 # Install xk6

@@ -8,6 +8,7 @@ on:
         options:
           - k6browser_lambda.js
           - k6browser.js
+          - k6browser_lambda_test.js
       logLevel:
         description: 'Log level'
         required: true

@@ -7,6 +7,9 @@ ARG DEBIAN_FRONTEND=noninteractive
 RUN apt-get update -y; 
 RUN apt-get install wget -y
 
+RUN apt-get update -y && \ 
+    apt-get install chromium-browser -y
+
 # Install golang
 RUN wget https://go.dev/dl/go1.23.2.linux-amd64.tar.gz
 RUN rm -rf /usr/local/go && tar -C /usr/local -xzf go1.23.2.linux-amd64.tar.gz; rm go1.23.2.linux-amd64.tar.gz
@@ -25,8 +28,8 @@ RUN apt-get update &&  \
 
 FROM alpine:3.15
 RUN apk add --no-cache ca-certificates
-RUN apt-get install chromium-browser
 COPY --from=builder /root/go/bin/k6 /usr/bin/k6
+COPY --from=builder /usr/bin/chromium-browser /usr/bin/chromium-browser
 
 COPY --from=builder /etc/ssl/certs/ca-certificates.crt /etc/ssl/certs/ca-certificates.crt
 ADD start.sh .

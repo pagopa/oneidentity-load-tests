@@ -12,4 +12,4 @@ aws_session_token = $AWS_SESSION_TOKEN
 region = eu-south-1
 EOF
 
-K6_STATSD_ENABLE_TAGS=true k6 run --out statsd $1
+K6_STATSD_ENABLE_TAGS=true K6_BROWSER_ARGS='no-sandbox' K6_BROWSER_HEADLESS=true k6 run --out statsd $1

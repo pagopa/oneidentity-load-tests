@@ -38,7 +38,7 @@ export const options = {
       //          { duration: '60s', target: 10 }, // Raggiunge 100 iterazioni al secondo per 1 minuti
       //          { duration: '60s', target: 10 }, // Mantiene 100 iterazioni al secondo per 1 minuti
       //          { duration: '60s', target: 5 }, // Riduce a 50 iterazioni al secondo in 1 minuti
-      //          ],
+      //           ],
       
       executor: 'ramping-vus',
       startVUs: 5,

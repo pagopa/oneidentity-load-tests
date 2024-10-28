@@ -15,6 +15,7 @@ ENV PATH="/usr/local/go/bin:${PATH}"
 # Install xk6
 RUN /usr/local/go/bin/go install go.k6.io/xk6/cmd/xk6@latest
 
+
 RUN apt-get update &&  \
     apt-get install -y ca-certificates curl && \
     rm -rf /var/lib/apt/lists/*
@@ -26,7 +27,6 @@ RUN curl -O https://s3.amazonaws.com/amazoncloudwatch-agent/debian/amd64/latest/
 
 FROM alpine:3.15
 RUN apk add --no-cache ca-certificates
-COPY --from=builder /root/go/bin/k6 /usr/bin/k6
 
 COPY --from=builder /etc/ssl/certs/ca-certificates.crt /etc/ssl/certs/ca-certificates.crt
 COPY --from=builder /opt/aws/amazon-cloudwatch-agent /opt/aws/amazon-cloudwatch-agent

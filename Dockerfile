@@ -15,11 +15,6 @@ ENV PATH="/usr/local/go/bin:${PATH}"
 # Install xk6
 RUN /usr/local/go/bin/go install go.k6.io/xk6/cmd/xk6@latest
 
-## build k6 with faker extension
-## install faker
-RUN /root/go/bin/xk6 build v0.2.0 --output /root/go/bin/k6 --with github.com/szkiba/xk6-faker
-
-
 RUN apt-get update &&  \
     apt-get install -y ca-certificates curl && \
     rm -rf /var/lib/apt/lists/*

@@ -15,16 +15,26 @@ ENV PATH="/usr/local/go/bin:${PATH}"
 # Install xk6
 RUN /usr/local/go/bin/go install go.k6.io/xk6/cmd/xk6@latest
 
+## build k6 with browser extension
+## install K6 browser
+RUN /root/go/bin/xk6 build v0.2.0 --output /root/go/bin/k6 --with github.com/grafana/xk6-browser@latest
 
 RUN apt-get update &&  \
     apt-get install -y ca-certificates curl && \
     rm -rf /var/lib/apt/lists/*
 
+RUN curl -O https://s3.amazonaws.com/amazoncloudwatch-agent/debian/amd64/latest/amazon-cloudwatch-agent.deb && \
+    dpkg -i -E amazon-cloudwatch-agent.deb && \
+    rm -rf /tmp/*
+
+
 FROM alpine:3.15
 RUN apk add --no-cache ca-certificates
-
 COPY --from=builder /root/go/bin/k6 /usr/bin/k6
+
 COPY --from=builder /etc/ssl/certs/ca-certificates.crt /etc/ssl/certs/ca-certificates.crt
+COPY --from=builder /opt/aws/amazon-cloudwatch-agent /opt/aws/amazon-cloudwatch-agent
+COPY codebuild/amazon-cloudwatch-agent.json /opt/aws/amazon-cloudwatch-agent/etc/amazon-cloudwatch-agent.json
 ADD start.sh .
 RUN chmod +x start.sh
 

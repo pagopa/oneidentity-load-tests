@@ -7,29 +7,13 @@ import { Counter } from 'k6/metrics';
 export const options = {
   scenarios: {
     perftest: {
-      //executor: 'per-vu-iterations',
-	  //executor: 'constant-vus',
-	  //vus: 1, // Numero di utenti virtuali
-	  //duration: '30s',
-      //iterations: 2, // Numero di iterazioni per utente virtuale
-	  
-	  //constant-arrival-rate: Mantiene un tasso costante di nuove iterazioni per un periodo di tempo.
-	  //executor: 'constant-arrival-rate',
-    //rate: 3, //  iterazioni al secondo
-    //duration: '3m',
-    //preAllocatedVUs: 5, // Numero di VU preallocati
-	  //
-	  
-	  //ramping-arrival-rate: Aumenta o diminuisce gradualmente il tasso di nuove iterazioni
-      executor: 'ramping-arrival-rate',
-      startRate: 10, // Inizia con 5 iterazioni al secondo
-      timeUnit: '1s', // Unità di tempo per il rate
-      preAllocatedVUs: 500, // Numero di VU preallocati
-      maxVUs: 1000, // Numero massimo di VU
+      executor: 'ramping-vus',
+      startVUs: 50,
       stages: [
-               { duration: '60s', target: 10 }, // Raggiunge 50 iterazioni al secondo in 5 minuti
-               { duration: '60s', target: 20 }, // Mantiene 50 iterazioni al secondo per 10 minuti
-               { duration: '60s', target: 10 }, // Riduce a 0 iterazioni al secondo in 5 minuti
+               { duration: '60s', target: 50 },
+               { duration: '60s', target: 100 },
+               { duration: '60s', target: 100 },
+               { duration: '60s', target: 50 },
                ],
 
       options: {
@@ -63,5 +47,5 @@ export default async function() {
   await page.locator('[id="https://koz3yhpkscymaqgp4m7ceguu6m0tffuz.lambda-url.eu-south-1.on.aws"]').click();
   
   //sleep(20);
-  //page.close()  
+  page.close()  
 }

@@ -32,7 +32,7 @@ export const options = {
       startRate: 5, // Inizia con 50 iterazioni al secondo
       timeUnit: '1s', // Unità di tempo per il rate
       preAllocatedVUs: 100, // Numero di VU preallocati
-      maxVUs: 200, // Numero massimo di VU
+      maxVUs: 400, // Numero massimo di VU
       stages: [
                { duration: '60s', target: 5 }, // Raggiunge 50 iterazioni al secondo in 1 minuti
                { duration: '60s', target: 10 }, // Raggiunge 100 iterazioni al secondo per 1 minuti

@@ -1,5 +1,10 @@
 name: K6 Browser Load Tests
 on:
+  push:
+    branches: ['main']
+    # Run only if there are at least one change matching the following paths  
+    paths:
+      - 'src/k6browser_lambda.js'
   workflow_dispatch:
     inputs:
       script:
@@ -32,7 +37,8 @@ jobs:
 
       - name: Run k6 test
         working-directory: ./src/
-        run: K6_BROWSER_ARGS='no-sandbox' K6_BROWSER_HEADLESS=true k6 run ${{ inputs.script }}
+        run: K6_BROWSER_ARGS='no-sandbox' K6_BROWSER_HEADLESS=true k6 run k6browser_lambda.js
+       # run: K6_BROWSER_ARGS='no-sandbox' K6_BROWSER_HEADLESS=true k6 run ${{ inputs.script }}
 
       - name: Upload Report
         uses: actions/upload-artifact@v4

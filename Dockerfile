@@ -30,7 +30,6 @@ FROM alpine:3.15
 RUN apk add --no-cache ca-certificates
 COPY --from=builder /root/go/bin/k6 /usr/bin/k6
 COPY --from=builder /usr/bin/chromium-browser /usr/bin/chromium-browser
-COPY --from=builder /usr/lib/chromium /usr/lib/chromium
 
 COPY --from=builder /etc/ssl/certs/ca-certificates.crt /etc/ssl/certs/ca-certificates.crt
 ADD start.sh .

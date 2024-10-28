@@ -9,3 +9,5 @@ aws_session_token = $AWS_SESSION_TOKEN
 aws_session_token = $AWS_SESSION_TOKEN
 region = eu-south-1
 EOF
+
+K6_STATSD_ENABLE_TAGS=true k6 run --out statsd $1

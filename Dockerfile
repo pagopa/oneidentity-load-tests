@@ -17,7 +17,7 @@ RUN /usr/local/go/bin/go install go.k6.io/xk6/cmd/xk6@latest
 
 ## build k6 with browser extension
 ## install K6 browser
-RUN /root/go/bin/xk6 build v0.2.0 --output /root/go/bin/k6 --with github.com/grafana/xk6-browser@latest
+RUN /root/go/bin/xk6 build v0.2.0 --output /root/go/bin/k6 --with github.com/grafana/xk6-browser
 
 RUN apt-get update &&  \
     apt-get install -y ca-certificates curl && \

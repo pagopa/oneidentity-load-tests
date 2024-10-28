@@ -8,7 +8,7 @@ RUN apt-get update -y;
 RUN apt-get install wget -y
 
 RUN apt-get update -y && \ 
-    apt-get install chromium-browser -y
+    apt-get install chromium -y
 
 # Install golang
 RUN wget https://go.dev/dl/go1.23.2.linux-amd64.tar.gz
@@ -29,7 +29,7 @@ RUN apt-get update &&  \
 FROM alpine:3.15
 RUN apk add --no-cache ca-certificates
 COPY --from=builder /root/go/bin/k6 /usr/bin/k6
-COPY --from=builder /usr/bin/chromium-browser /usr/bin/chromium-browser
+COPY --from=builder /usr/bin/chromium /usr/bin/chromium
 
 COPY --from=builder /etc/ssl/certs/ca-certificates.crt /etc/ssl/certs/ca-certificates.crt
 ADD start.sh .

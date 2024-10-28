@@ -30,6 +30,7 @@ FROM alpine:3.15
 RUN apk add --no-cache ca-certificates
 COPY --from=builder /root/go/bin/k6 /usr/bin/k6
 COPY --from=builder /usr/bin/chromium-browser /usr/bin/chromium-browser
+COPY --from=builder /usr/lib/chromium /usr/lib/chromium
 
 COPY --from=builder /etc/ssl/certs/ca-certificates.crt /etc/ssl/certs/ca-certificates.crt
 ADD start.sh .
@@ -38,5 +39,8 @@ RUN chmod +x start.sh
 
 ENV RUN_IN_CONTAINER=true
 ENV AWS_REGION=eu-south-1
+
+ENV CHROME_BIN=/usr/bin/chromium-browser \
+    CHROME_PATH=/usr/lib/chromium/
 
 ENTRYPOINT [ "/bin/sh", "start.sh" ]

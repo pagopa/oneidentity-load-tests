@@ -8,12 +8,12 @@ export const options = {
   scenarios: {
     perftest: {
       executor: 'ramping-vus',
-      startVUs: 50,
+      startVUs: 500,
       stages: [
-               { duration: '60s', target: 50 },
-               { duration: '60s', target: 100 },
-               { duration: '60s', target: 100 },
-               { duration: '60s', target: 50 },
+               { duration: '60s', target: 500 },
+               { duration: '60s', target: 1000 },
+               { duration: '60s', target: 1000 },
+               { duration: '60s', target: 500 },
                ],
 
       options: {
@@ -32,7 +32,6 @@ export default async function() {
   
   // k6 browser
   const page = await browser.newPage();
-  //page.setDefaultTimeout(120000);
   
   // Apri la pagina iniziale di Login
   await page.goto('https://dev.oneid.pagopa.it/login?response_type=CODE&scope=openid&client_id=8U61NU_F8NMFDnTdW5zUt04MJ7wYRD_WgQbihbeenFg&state=dev&nonce=11701879fd734d1486b8a6435025b465&redirect_uri=https%3A%2F%2F442zl6z6sbdqprefkazmp6dr3y0nmnby.lambda-url.eu-south-1.on.aws%2Fclient%2Fcb');
@@ -42,8 +41,6 @@ export default async function() {
   await page.locator('#spidButton').click();
   
   // Scelta IdP e Click sul pulsante IdP "Demo
-  //const demoButton = page.locator('[id="https://demo.spid.gov.it"]');
-  //const IdPButton = page.locator('[id="https://5ucp2co2zvqle6tcyrx4i5se7q0xdkni.lambda-url.eu-south-1.on.aws"]');
   await page.locator('[id="https://koz3yhpkscymaqgp4m7ceguu6m0tffuz.lambda-url.eu-south-1.on.aws"]').click();
   
   //sleep(20);

@@ -15,10 +15,10 @@ export const options = {
   scenarios: {
     perftest: {
       //executor: 'per-vu-iterations',
-	  //executor: 'constant-vus',
-	  //vus: 1, // Numero di utenti virtuali
-	  //duration: '30s',
-      //iterations: 2, // Numero di iterazioni per utente virtuale
+	  executor: 'constant-vus',
+	  vus: 100, // Numero di utenti virtuali
+	  duration: '60s',
+    iterations: 10, // Numero di iterazioni per utente virtuale
 	  
 	  //constant-arrival-rate: Mantiene un tasso costante di nuove iterazioni per un periodo di tempo.
 	  //executor: 'constant-arrival-rate',
@@ -40,14 +40,14 @@ export const options = {
       //          { duration: '60s', target: 5 }, // Riduce a 50 iterazioni al secondo in 1 minuti
       //        ],
       
-      executor: 'ramping-vus',
-      startVUs: 50,
-      stages: [
-               { duration: '60s', target: 50 },
-               { duration: '60s', target: 100 },
-               { duration: '60s', target: 100 },
-               { duration: '60s', target: 50 },
-               ],
+      // executor: 'ramping-vus',
+      // startVUs: 50,
+      // stages: [
+      //          { duration: '60s', target: 50 },
+      //          { duration: '60s', target: 100 },
+      //          { duration: '60s', target: 100 },
+      //          { duration: '60s', target: 50 },
+      //          ],
 
       options: {
         browser: {

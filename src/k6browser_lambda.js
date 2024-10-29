@@ -18,7 +18,7 @@ export const options = {
 	  executor: 'constant-vus',
 	  vus: 100, // Numero di utenti virtuali
 	  duration: '60s',
-    iterations: 10, // Numero di iterazioni per utente virtuale
+    //iterations: 10, // Numero di iterazioni per utente virtuale
 	  
 	  //constant-arrival-rate: Mantiene un tasso costante di nuove iterazioni per un periodo di tempo.
 	  //executor: 'constant-arrival-rate',

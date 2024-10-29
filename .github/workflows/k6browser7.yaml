@@ -1,0 +1,49 @@
+name: K6 Browser Load Tests 7
+on:
+  push:
+    branches: ['main']
+    # Run only if there are at least one change matching the following paths  
+    paths:
+      - 'src/k6browser_lambda.js'
+  workflow_dispatch:
+    inputs:
+      script:
+        type: choice
+        default: 'k6browser_lambda.js'
+        options:
+          - k6browser_lambda.js
+          - k6browser.js
+          - k6browser_lambda_test.js
+      logLevel:
+        description: 'Log level'
+        required: true
+        default: 'warning'
+        type: choice
+        options:
+          - warning
+ 
+jobs:
+  performance-tests:
+    runs-on: ubuntu-latest
+    env:
+      K6_BROWSER_ENABLED: false
+      
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+    
+      - name: Setup k6
+        uses: grafana/setup-k6-action@v1
+
+      - name: Run k6 test
+        working-directory: ./src/
+        run: K6_BROWSER_ARGS='no-sandbox' K6_BROWSER_HEADLESS=true k6 run k6browser_lambda.js
+       # run: K6_BROWSER_ARGS='no-sandbox' K6_BROWSER_HEADLESS=true k6 run ${{ inputs.script }}
+
+      - name: Upload Report
+        uses: actions/upload-artifact@v4
+        with:
+          name: k6-browser-report-summary
+          path: TestSummaryReport.html
+
+   

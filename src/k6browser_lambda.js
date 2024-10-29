@@ -64,7 +64,7 @@ const throttling = new Counter('throttling');
 export default async function() {
   
   // k6 browser
-  const page = browser.newPage();
+  const page = await browser.newPage();
   page.setDefaultTimeout(120000);
   
   // Apri la pagina iniziale di Login
@@ -72,16 +72,16 @@ export default async function() {
   //sleep(5);
   
   // Clicca sul pulsante "Entra con SPID"
-  const spidButton = page.locator('#spidButton');
-  spidButton.click();
+  const spidButton = await page.locator('#spidButton');
+  await spidButton.click();
   page.waitForNavigation();
   //sleep(5);
   
   // Scelta IdP e Click sul pulsante IdP "Demo
   //const demoButton = page.locator('[id="https://demo.spid.gov.it"]');
   //const IdPButton = page.locator('[id="https://5ucp2co2zvqle6tcyrx4i5se7q0xdkni.lambda-url.eu-south-1.on.aws"]');
-  const IdPButton = page.locator('[id="https://koz3yhpkscymaqgp4m7ceguu6m0tffuz.lambda-url.eu-south-1.on.aws"]');
-  IdPButton.click();
+  const IdPButton = await page.locator('[id="https://koz3yhpkscymaqgp4m7ceguu6m0tffuz.lambda-url.eu-south-1.on.aws"]');
+  await IdPButton.click();
   page.waitForNavigation();  
   
   //sleep(20);

@@ -40,7 +40,7 @@ export const options = {
       //          { duration: '60s', target: 5 }, // Riduce a 50 iterazioni al secondo in 1 minuti
       //        ],
       
-      // executor: 'ramping-vus',
+      executor: 'ramping-vus',
        startVUs: 50,
        stages: [
                 { duration: '15s', target: 50 },

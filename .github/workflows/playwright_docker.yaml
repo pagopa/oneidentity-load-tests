@@ -4,6 +4,15 @@ on:
     branches: ['main']
     paths:
       - 'src/playwright.js'
+  workflow_dispatch:
+      logLevel:
+        description: 'Log level'
+        required: true
+        default: 'warning'
+        type: choice
+        options:
+          - warning
+ 
 jobs:
   playwright:
     name: 'Playwright Tests Docker'
@@ -16,7 +25,9 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: lts/*
-     # - name: Install dependencies
-     #   run: npm install
+      - name: init
+        run: npm init -y
+      - name: Install dependencies
+        run: npm install
       - name: Run your tests
         run: npx playwright test --repeat-each=50

@@ -8,6 +8,6 @@ test('get started link', async ({ page }) => {
   await page.locator('#spidButton').click();
   await expect(page.getByText('Scegli il tuo Identity Provider')).toBeVisible({ timeout: 1000000 });
   await page.locator('[id="https://koz3yhpkscymaqgp4m7ceguu6m0tffuz.lambda-url.eu-south-1.on.aws"]').click();
-  //await expect(page).toHaveText(/Token e Codici/);
+  //await expect(page).toHaveText(/Token e Codici/); 
   await expect(page.getByText('Token e Codici')).toBeVisible({ timeout: 1000000 });
 });

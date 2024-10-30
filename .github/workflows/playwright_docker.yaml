@@ -17,9 +17,6 @@ jobs:
   playwright:
     name: 'Playwright Tests Docker'
     runs-on: ubuntu-latest
-    container:
-      image: mcr.microsoft.com/playwright:v1.48.1-noble
-      options: --user 1001
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2

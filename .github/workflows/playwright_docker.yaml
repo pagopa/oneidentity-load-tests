@@ -26,3 +26,6 @@ jobs:
 
       - name: Run Playwright tests
         run: docker run --rm --ipc=host mcr.microsoft.com/playwright:v1.48.1-noble /bin/bash
+        
+      - name: Run your tests
+        run: npx playwright test

@@ -32,6 +32,6 @@ jobs:
       - name: Install dependencies
         run: npm ci
       - name: Install playwright
-        run: npm init playwright@latest
+        run: npx playwright install --with-deps
       - name: Run your tests
         run: npx playwright test --repeat-each=50

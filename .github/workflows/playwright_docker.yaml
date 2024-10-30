@@ -25,4 +25,4 @@ jobs:
         run: docker pull mcr.microsoft.com/playwright:v1.48.1-noble
 
       - name: Run Playwright tests
-        run: docker run -it --rm --ipc=host mcr.microsoft.com/playwright:v1.48.1-noble /bin/bash node /src/playwright.js
+        run: docker run --rm --ipc=host mcr.microsoft.com/playwright:v1.48.1-noble /bin/bash node /src/playwright.js

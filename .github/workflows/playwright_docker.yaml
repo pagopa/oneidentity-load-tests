@@ -18,7 +18,7 @@ jobs:
     name: 'Playwright Tests Docker'
     runs-on: ubuntu-latest
     container:
-      image: mcr.microsoft.com/playwright:v1.48.1-jammy
+      image: mcr.microsoft.com/playwright:v1.48.1-noble
       options: --user 1001
     steps:
       - uses: actions/checkout@v4

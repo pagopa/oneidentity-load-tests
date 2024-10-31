@@ -11,7 +11,7 @@ async function oi(page, userContext, events, test) {
     await test.step('IdP Click', async () => {
       await page.locator('[id="https://koz3yhpkscymaqgp4m7ceguu6m0tffuz.lambda-url.eu-south-1.on.aws"]').click();
       const element = await page.waitForSelector('text=Token e Codici');
-     // await expect(element).toBeVisible();
+     // await expect(element).toBeVisible(); 
     });
     }
   

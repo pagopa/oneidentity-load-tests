@@ -26,7 +26,7 @@ jobs:
       - name: Execute load tests
         uses: artilleryio/action-cli@v1
         with:
-          command: run src/artillery.yml --output report-artillery.json
+          command: run artillery.yml --output report-artillery.json
           working-directory: ./src
           
       - name: Upload artifact

@@ -1,4 +1,4 @@
-name: Artillery Socket.IO Load Test
+name: Artillery Load Test
  
 on:
   push:
@@ -6,6 +6,14 @@ on:
       - main
     paths:
       - 'src/artillery.js'
+  workflow_dispatch:
+    logLevel:
+      description: 'Log level'
+      required: true
+      default: 'warning'
+      type: choice
+      options:
+        - warning
  
 jobs:
   artillery:

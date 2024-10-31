@@ -30,6 +30,7 @@ jobs:
 
       - name: Install dependencies
         run: |
+          npm init
           npm install
           npx playwright install
  

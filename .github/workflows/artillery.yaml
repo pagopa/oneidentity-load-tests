@@ -21,28 +21,33 @@ jobs:
  
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
     
-      - name: Set up Node.js
-        uses: actions/setup-node@v3
+      - name: Use Node.js
+        uses: actions/setup-node@v2
         with:
-          node-version: 18
+          node-version: 20.x
 
       - name: Install dependencies
         run: |
           npm init
           npm install
           npx playwright install
+
+      - name: Make reports directory
+        run: mkdir reports
  
       - name: Execute load tests
         uses: artilleryio/action-cli@v1
         with:
-          command: run artillery.yml --output report-artillery.json
-          working-directory: ./src
+          command: run src/artillery.yml --output reports/report-artillery.json
+          #working-directory: ./src
+        
+      - name: Generate HTML report
+        run: run report --output reports/report.html reports/report.json
           
       - name: Upload artifact
         uses: actions/upload-artifact@v3
-        if: always()
         with:
           name: artillery-report
-          path: ./report-artillery.json # reference the generated report in the file system
+          path: reports/*

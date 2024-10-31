@@ -1,0 +1,28 @@
+name: Artillery Socket.IO Load Test
+ 
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'src/artillery.js'
+ 
+jobs:
+  artillery:
+    runs-on: ubuntu-latest
+ 
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+ 
+      - name: Execute load tests
+        uses: artilleryio/action-cli@v1
+        with:
+          command: run src/artillery.yml
+          
+      - name: Upload artifact
+        uses: actions/upload-artifact@v3
+        if: always()
+        with:
+          name: artillery-report
+          path: ./report-artillery.json # reference the generated report in the file system

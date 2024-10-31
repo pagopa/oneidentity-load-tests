@@ -31,7 +31,8 @@ jobs:
       - name: Install dependencies
         run: |
           npm install
-          npx playwright@1.48.0 install
+          npm install @playwright/test
+          npx playwright install
 
       #- name: Install dependencies
       #  run: |

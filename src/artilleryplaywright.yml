@@ -1,6 +1,6 @@
 # Command for run: WORKER_IMAGE_URL=public.ecr.aws/d8a4z9o5/artillery-worker:a0b6328719a1223118c362ab923476b97f5a1e83 artillery run-fargate --region eu-central-1 --count 20 --launch-config '{"cpu": 4096, "memory": 8192}' artilleryplaywright.yaml
 config:
-  target: https://dev.oneid.pagopa.it/login?response_type=CODE&scope=openid&client_id=8U61NU_F8NMFDnTdW5zUt04MJ7wYRD_WgQbihbeenFg&state=dev&nonce=11701879fd734d1486b8a6435025b465&redirect_uri=https://442zl6z6sbdqprefkazmp6dr3y0nmnby.lambda-url.eu-south-1.on.aws/client/cb
+  target: https://dev.oneid.pagopa.it/login?response_type=CODE&scope=openid&client_id=bxMiPVktuZ5lBNbZYJ3ODosXL57ltrLp7BgyOkw-0v4&state=dev&nonce=11701879fd734d1486b8a6435025b465&redirect_uri=https://442zl6z6sbdqprefkazmp6dr3y0nmnby.lambda-url.eu-south-1.on.aws/client/cb
   phases:
      - arrivalCount: 900
        duration: 300

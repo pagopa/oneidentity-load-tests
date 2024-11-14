@@ -5,47 +5,7 @@ config:
 
      - duration: 5m
        arrivalRate: 1
-       rampTo: 2
-       maxVusers: 1
-
-     - duration: 5m
-       arrivalRate: 2
-       rampTo: 3
-       maxVusers: 2
-
-     - duration: 5m
-       arrivalRate: 3
-       rampTo: 4
        maxVusers: 3
-
-     - duration: 5m
-       arrivalRate: 4
-       rampTo: 5
-       maxVusers: 4
-
-     - duration: 5m
-       arrivalRate: 5
-       rampTo: 6
-       maxVusers: 5
-
-     - duration: 5m
-       arrivalRate: 6
-       rampTo: 7
-       maxVusers: 6
-
-     - duration: 5m
-       arrivalRate: 7
-       rampTo: 8
-       maxVusers: 7
-
-     - duration: 5m
-       arrivalRate: 8
-       rampTo: 9
-       maxVusers: 8
-
-     - duration: 5m
-       arrivalRate: 9
-       maxVusers: 9
 
   # Load the Playwright engine:
   engines:

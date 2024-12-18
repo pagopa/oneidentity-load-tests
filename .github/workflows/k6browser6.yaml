@@ -30,10 +30,10 @@ jobs:
       
     steps:
       - name: Checkout Code
-        uses: actions/checkout@v4
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4
     
       - name: Setup k6
-        uses: grafana/setup-k6-action@v1
+        uses: grafana/setup-k6-action@ffe7d7290dfa715e48c2ccc924d068444c94bde2 # v1
 
       - name: Run k6 test
         working-directory: ./src/
@@ -41,7 +41,7 @@ jobs:
        # run: K6_BROWSER_ARGS='no-sandbox' K6_BROWSER_HEADLESS=true k6 run ${{ inputs.script }}
 
       - name: Upload Report
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@6f51ac03b9356f520e9adb1b1b7802705f340c2b # v4
         with:
           name: k6-browser-report-summary
           path: TestSummaryReport.html

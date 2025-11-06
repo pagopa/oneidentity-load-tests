@@ -9,7 +9,7 @@ config:
       launchOptions:
         headless: true
       defaultTimeout: 120
-  processor: './artilleryplaywright.js'
+  processor: '../artilleryplaywright.js'
 scenarios:
   - engine: playwright
     flowFunction: "oi"

@@ -1,33 +1,37 @@
-# Person Data Vault load tests
-K6 scripts to run load tests for Personal Data Vault api(s)
+# oneidentity-load-tests
 
-**Important** some of these load tests use the k6 extension [xk6-faker](https://github.com/szkiba/xk6-faker). Please follow the instructions in github to install it.
+Repository dedicated to load testing for the [pagopa/oneidentity](https://github.com/pagopa/oneidentity) project.
 
-## 01 Put tokens
+It includes Artillery + Playwright scenarios that can run:
 
-```bash
-k6 run -e HOST_NAME=[api.tokenizer.pdv.pagopa.it|api.uat.tokenizer.pdv.pagopa.it] \
--e API_KEY=<application gateway api key>
-01-put-tokens.js
-```
+- locally
+- on AWS Fargate
 
-## 02 Get tokens
+## Prerequisites
 
-```bash
-k6 run -e HOST_NAME=[api.tokenizer.pdv.pagopa.it|api.uat.tokenizer.pdv.pagopa.it] -e API_KEY=<application gateway api key> \
--e TOKEN=<token id> 02-get-token.js
-```
+- Node.js 18+
+- dependencies installed with `npm install`
+- (for Fargate) AWS credentials configured in your environment
 
-## 03 Post token
+## Client ID configuration
 
-```bash
-k6 run -e HOST_NAME=[api.tokenizer.pdv.pagopa.it|api.uat.tokenizer.pdv.pagopa.it] \
--e API_KEY=<application gateway api key> 03-post-token.js
-```
+Before running load tests, check and update the `clientId` value in `package.json` if needed.
 
-## 04 Patch users 
+- Reference: `config.clientId` in [package.json](package.json)
+- Runtime override (without editing the file): `CLIENT_ID=<your-client-id> npm run ramp_01`
+
+## Command to run load tests
+
+Standard run on AWS Fargate:
 
 ```bash
-./k6 run -e HOST_NAME=[api.pdv.pagopa.it|api.uat.pdv.pagopa.it] \
--e API_KEY=<application gateway api key> 04-patch-users.js 
+yarn start
 ```
+
+or
+
+```bash
+npm run test-<number>
+```
+
+Always check the scripts declared in [package.json](package.json) file.

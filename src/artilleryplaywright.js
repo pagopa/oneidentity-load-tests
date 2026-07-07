@@ -1,11 +1,15 @@
 async function oi(page, userContext, events, test) {
   const { step } = test;
+  const clientId =
+    process.env.CLIENT_ID || "bxMiPVktuZ5lBNbZYJ3ODosXL57ltrLp7BgyOkw-0v4";
+  const loginUrl =
+    "https://dev.oneid.pagopa.it/login?response_type=CODE&scope=openid" +
+    `&client_id=${clientId}` +
+    "&state=dev&nonce=11701879fd734d1486b8a6435025b465" +
+    "&redirect_uri=https://442zl6z6sbdqprefkazmp6dr3y0nmnby.lambda-url.eu-south-1.on.aws/client/cb";
 
   await step("Login", async () => {
-    await page.goto(
-      "https://dev.oneid.pagopa.it/login?response_type=CODE&scope=openid&client_id=bxMiPVktuZ5lBNbZYJ3ODosXL57ltrLp7BgyOkw-0v4&state=dev&nonce=11701879fd734d1486b8a6435025b465&redirect_uri=https://442zl6z6sbdqprefkazmp6dr3y0nmnby.lambda-url.eu-south-1.on.aws/client/cb",
-      { timeout: 5000 }
-    );
+    await page.goto(loginUrl, { timeout: 5000 });
   });
   await step("SPID Click", async () => {
     await page.locator("#spidButton").click({ timeout: 5000 });

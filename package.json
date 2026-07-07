@@ -3,13 +3,11 @@
   "version": "1.18.0",
   "description": "",
   "main": "index.js",
+  "config": {
+    "clientId": "M-wvnk4qoXhHTBCvbbqBRs2HfX2ybrRSuHYI3cMDbDk"
+  },
   "scripts": {
-    "test": "tap test/*.test.js --timeout 300",
-    "test:aws": "tap test/*.aws.js --timeout 420",
-    "test:aws:ci": "tap --timeout=420",
-    "start": "WORKER_IMAGE_URL=public.ecr.aws/artilleryio/artillery-worker:c232b6a7e89f54c2f8fc3c799f4252f5293df3dc-x86_64 artillery run-fargate --region eu-central-1 --count 20 --launch-config '{\"cpu\": 4096, \"memory\": 8192}' src/artillery/artilleryplaywright.yml",
-    "test-08": "WORKER_IMAGE_URL=public.ecr.aws/artilleryio/artillery-worker:c232b6a7e89f54c2f8fc3c799f4252f5293df3dc-x86_64 artillery run-fargate --region eu-central-1 --count 20 --launch-config '{\"cpu\": 4096, \"memory\": 8192}' src/artillery/08-artilleryplaywright_ramp.yml",
-    "local": "artillery run src/artillery/artilleryplaywright_local_ramp.yml"
+    "ramp_01": "CLIENT_ID=${CLIENT_ID:-$npm_package_config_clientId} WORKER_IMAGE_URL=public.ecr.aws/artilleryio/artillery-worker:c232b6a7e89f54c2f8fc3c799f4252f5293df3dc-x86_64 artillery run-fargate --region eu-central-1 --count 20 --launch-config '{\"cpu\": 4096, \"memory\": 8192}' src/artillery/ramp_01.yml"
   },
   "tap": {
     "disable-coverage": true,

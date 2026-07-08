@@ -10,7 +10,8 @@ It includes Artillery + Playwright scenarios that can run:
 ## Prerequisites
 
 - Node.js 18+
-- dependencies installed with `npm install`
+- pnpm enabled with `corepack enable pnpm`
+- dependencies installed with `pnpm install`
 - (for Fargate) AWS credentials configured in your environment
 
 ## Client ID configuration
@@ -18,20 +19,20 @@ It includes Artillery + Playwright scenarios that can run:
 Before running load tests, check and update the `clientId` value in `package.json` if needed.
 
 - Reference: `config.clientId` in [package.json](package.json)
-- Runtime override (without editing the file): `CLIENT_ID=<your-client-id> npm run ramp_01`
+- Runtime override (without editing the file): `CLIENT_ID=<your-client-id> pnpm run ramp_01`
 
 ## Command to run load tests
 
 Standard run on AWS Fargate:
 
 ```bash
-yarn start
+pnpm start
 ```
 
 or
 
 ```bash
-npm run test-<number>
+pnpm run ramp_01
 ```
 
 Always check the scripts declared in [package.json](package.json) file.

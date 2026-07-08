@@ -1,0 +1,54 @@
+# Command for run: pnpm start
+config:
+  target: https://dev.oneid.pagopa.it/login?response_type=CODE&scope=openid&client_id={{ $processEnvironment.CLIENT_ID }}&state=dev&nonce=11701879fd734d1486b8a6435025b465&redirect_uri=https://442zl6z6sbdqprefkazmp6dr3y0nmnby.lambda-url.eu-south-1.on.aws/client/cb
+  phases:
+    - duration: 120
+      arrivalRate: 1
+      rampTo: 2
+      maxVusers: 8
+      name: Gaussian ramp up 1 to 2 login/s per task
+    - duration: 60
+      arrivalRate: 2
+      rampTo: 3
+      maxVusers: 12
+      name: Gaussian ramp up 2 to 3 login/s per task
+    - duration: 60
+      arrivalRate: 3
+      rampTo: 4
+      maxVusers: 16
+      name: Gaussian ramp up 3 to 4 login/s per task
+    - duration: 60
+      arrivalRate: 4
+      rampTo: 5
+      maxVusers: 20
+      name: Gaussian ramp up 4 to 5 login/s per task
+    - duration: 60
+      arrivalRate: 5
+      rampTo: 4
+      maxVusers: 20
+      name: Gaussian ramp down 5 to 4 login/s per task
+    - duration: 60
+      arrivalRate: 4
+      rampTo: 3
+      maxVusers: 16
+      name: Gaussian ramp down 4 to 3 login/s per task
+    - duration: 60
+      arrivalRate: 3
+      rampTo: 2
+      maxVusers: 12
+      name: Gaussian ramp down 3 to 2 login/s per task
+    - duration: 60
+      arrivalRate: 2
+      rampTo: 1
+      maxVusers: 8
+      name: Gaussian ramp down 2 to 1 login/s per task
+
+  engines:
+    playwright:
+      launchOptions:
+        headless: true
+      defaultTimeout: 10
+  processor: "../loginFlow.js"
+scenarios:
+  - engine: playwright
+    flowFunction: "oi"

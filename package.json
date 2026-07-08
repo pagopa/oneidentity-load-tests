@@ -2,14 +2,15 @@
   "name": "artillery-engine-playwright",
   "version": "1.18.0",
   "description": "",
+  "packageManager": "pnpm@10.29.2",
   "main": "index.js",
+  "config": {
+    "clientId": "M-wvnk4qoXhHTBCvbbqBRs2HfX2ybrRSuHYI3cMDbDk"
+  },
   "scripts": {
-    "test": "tap test/*.test.js --timeout 300",
-    "test:aws": "tap test/*.aws.js --timeout 420",
-    "test:aws:ci": "tap --timeout=420",
-    "start": "WORKER_IMAGE_URL=public.ecr.aws/artilleryio/artillery-worker:c232b6a7e89f54c2f8fc3c799f4252f5293df3dc-x86_64 artillery run-fargate --region eu-central-1 --count 20 --launch-config '{\"cpu\": 4096, \"memory\": 8192}' src/artillery/artilleryplaywright.yml",
-    "test-08": "WORKER_IMAGE_URL=public.ecr.aws/artilleryio/artillery-worker:c232b6a7e89f54c2f8fc3c799f4252f5293df3dc-x86_64 artillery run-fargate --region eu-central-1 --count 20 --launch-config '{\"cpu\": 4096, \"memory\": 8192}' src/artillery/08-artilleryplaywright_ramp.yml",
-    "local": "artillery run src/artillery/artilleryplaywright_local_ramp.yml"
+    "ramp_01": "CLIENT_ID=${CLIENT_ID:-$(node -p \"require('./package.json').config.clientId\")} WORKER_IMAGE_URL=public.ecr.aws/artilleryio/artillery-worker:c232b6a7e89f54c2f8fc3c799f4252f5293df3dc-x86_64 artillery run-fargate --region eu-central-1 --count 20 --launch-config '{\"cpu\": 4096, \"memory\": 8192}' src/artillery/ramp_01.yml",
+    "ramp_02": "CLIENT_ID=${CLIENT_ID:-$(node -p \"require('./package.json').config.clientId\")} WORKER_IMAGE_URL=public.ecr.aws/artilleryio/artillery-worker:c232b6a7e89f54c2f8fc3c799f4252f5293df3dc-x86_64 artillery run-fargate --region eu-central-1 --count 20 --launch-config '{\"cpu\": 4096, \"memory\": 8192}' src/artillery/ramp_02.yml",
+    "gaussian": "CLIENT_ID=${CLIENT_ID:-$(node -p \"require('./package.json').config.clientId\")} WORKER_IMAGE_URL=public.ecr.aws/artilleryio/artillery-worker:c232b6a7e89f54c2f8fc3c799f4252f5293df3dc-x86_64 artillery run-fargate --region eu-central-1 --count 20 --launch-config '{\"cpu\": 4096, \"memory\": 8192}' src/artillery/gaussian.yml"
   },
   "tap": {
     "disable-coverage": true,

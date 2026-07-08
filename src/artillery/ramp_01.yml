@@ -1,6 +1,6 @@
 # Command for run: yarn start
 config:
-  target: https://dev.oneid.pagopa.it/login?response_type=CODE&scope=openid&client_id=bxMiPVktuZ5lBNbZYJ3ODosXL57ltrLp7BgyOkw-0v4&state=dev&nonce=11701879fd734d1486b8a6435025b465&redirect_uri=https://442zl6z6sbdqprefkazmp6dr3y0nmnby.lambda-url.eu-south-1.on.aws/client/cb
+  target: https://dev.oneid.pagopa.it/login?response_type=CODE&scope=openid&client_id={{ $processEnvironment.CLIENT_ID }}&state=dev&nonce=11701879fd734d1486b8a6435025b465&redirect_uri=https://442zl6z6sbdqprefkazmp6dr3y0nmnby.lambda-url.eu-south-1.on.aws/client/cb
   phases:
     - duration: 120 # 2 minuti ramp up
       arrivalRate: 1
@@ -52,7 +52,7 @@ config:
       launchOptions:
         headless: true
       defaultTimeout: 10
-  processor: "../artilleryplaywright.js"
+  processor: "../loginFlow.js"
 scenarios:
   - engine: playwright
     flowFunction: "oi"

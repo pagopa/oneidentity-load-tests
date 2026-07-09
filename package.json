@@ -10,7 +10,8 @@
   "scripts": {
     "ramp_01": "CLIENT_ID=${CLIENT_ID:-$(node -p \"require('./package.json').config.clientId\")} WORKER_IMAGE_URL=public.ecr.aws/artilleryio/artillery-worker:c232b6a7e89f54c2f8fc3c799f4252f5293df3dc-x86_64 artillery run-fargate --region eu-central-1 --count 20 --launch-config '{\"cpu\": 4096, \"memory\": 8192}' src/artillery/ramp_01.yml",
     "ramp_02": "CLIENT_ID=${CLIENT_ID:-$(node -p \"require('./package.json').config.clientId\")} WORKER_IMAGE_URL=public.ecr.aws/artilleryio/artillery-worker:c232b6a7e89f54c2f8fc3c799f4252f5293df3dc-x86_64 artillery run-fargate --region eu-central-1 --count 20 --launch-config '{\"cpu\": 4096, \"memory\": 8192}' src/artillery/ramp_02.yml",
-    "gaussian": "CLIENT_ID=${CLIENT_ID:-$(node -p \"require('./package.json').config.clientId\")} WORKER_IMAGE_URL=public.ecr.aws/artilleryio/artillery-worker:c232b6a7e89f54c2f8fc3c799f4252f5293df3dc-x86_64 artillery run-fargate --region eu-central-1 --count 20 --launch-config '{\"cpu\": 4096, \"memory\": 8192}' src/artillery/gaussian.yml"
+    "gaussian": "CLIENT_ID=${CLIENT_ID:-$(node -p \"require('./package.json').config.clientId\")} WORKER_IMAGE_URL=public.ecr.aws/artilleryio/artillery-worker:c232b6a7e89f54c2f8fc3c799f4252f5293df3dc-x86_64 artillery run-fargate --region eu-central-1 --count 20 --launch-config '{\"cpu\": 4096, \"memory\": 8192}' src/artillery/gaussian.yml",
+    "ramp_03": "CLIENT_ID=${CLIENT_ID:-$(node -p \"require('./package.json').config.clientId\")} WORKER_IMAGE_URL=public.ecr.aws/artilleryio/artillery-worker:c232b6a7e89f54c2f8fc3c799f4252f5293df3dc-x86_64 artillery run-fargate --region eu-central-1 --count 5 --launch-config '{\"cpu\": 4096, \"memory\": 8192}' src/artillery/ramp_03.yml"
   },
   "tap": {
     "disable-coverage": true,

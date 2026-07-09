@@ -1,7 +1,7 @@
 async function oi(page, userContext, events, test) {
   const { step } = test;
   const clientId =
-    process.env.CLIENT_ID || "bxMiPVktuZ5lBNbZYJ3ODosXL57ltrLp7BgyOkw-0v4";
+    process.env.CLIENT_ID || "M-wvnk4qoXhHTBCvbbqBRs2HfX2ybrRSuHYI3cMDbDk";
   const loginUrl =
     "https://dev.oneid.pagopa.it/login?response_type=CODE&scope=openid" +
     `&client_id=${clientId}` +

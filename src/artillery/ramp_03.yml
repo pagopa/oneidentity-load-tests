@@ -1,0 +1,63 @@
+# Command for run: yarn start
+config:
+  target: https://dev.oneid.pagopa.it/login?response_type=CODE&scope=openid&client_id={{ $processEnvironment.CLIENT_ID }}&state=dev&nonce=11701879fd734d1486b8a6435025b465&redirect_uri=https://442zl6z6sbdqprefkazmp6dr3y0nmnby.lambda-url.eu-south-1.on.aws/client/cb
+  phases:
+    - duration: 60 # 1 minuto ramp up
+      arrivalRate: 1
+      rampTo: 2
+      maxVusers: 15
+      name: Ramp up to 2 login/s per task
+    - duration: 120 # 2 minuti ramp up
+      arrivalRate: 2
+      rampTo: 3
+      maxVusers: 25
+      name: Ramp up to 3 login/s per task
+    - duration: 180 # 3 minuti ramp up
+      arrivalRate: 3
+      rampTo: 4
+      maxVusers: 30
+      name: Ramp up to 4 login/s per task
+    - duration: 240 # 4 minuti ramp up
+      arrivalRate: 4
+      rampTo: 5
+      maxVusers: 40
+      name: Ramp up to 5 login/s per task
+    - duration: 240 # 4 minuti ramp up
+      arrivalRate: 5
+      rampTo: 6
+      maxVusers: 35
+      name: Ramp up to 6 login/s per task
+    - duration: 120 # 2 minuti ramp up
+      arrivalRate: 6
+      rampTo: 7
+      maxVusers: 40
+      name: Ramp up to 7 login/s per task
+    - duration: 180 # 2 minuti ramp up
+      arrivalRate: 7
+      rampTo: 8
+      maxVusers: 50
+      name: Ramp up to 8 login/s per task
+    - duration: 120 # 2 minuti ramp up
+      arrivalRate: 7
+      rampTo: 8
+      maxVusers: 32
+      name: Ramp up to 8 login/s per task
+    - duration: 120 # 2 minuti ramp up
+      arrivalRate: 8
+      rampTo: 9
+      maxVusers: 36
+      name: Ramp up to 9 login/s per task
+    - duration: 120 # 2 minuti ramp up
+      arrivalRate: 9
+      maxVusers: 36
+      name: Ramp up to 9 login/s per task
+
+  engines:
+    playwright:
+      launchOptions:
+        headless: true
+      defaultTimeout: 10
+  processor: "../loginFlow.js"
+scenarios:
+  - engine: playwright
+    flowFunction: "oi"

@@ -26,6 +26,10 @@ Before running load tests, check and update the `clientId` value in `package.jso
 Standard run on AWS Fargate:
 
 ```bash
+pnpm install
+```
+
+```bash
 pnpm start
 ```
 

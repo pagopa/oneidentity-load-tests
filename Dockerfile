@@ -1,5 +1,5 @@
 #FROM golang:1.18-alpine as builder
-FROM ubuntu:22.04 as builder
+FROM ubuntu:22.04@sha256:b000e69a50ff940390233025e7a337fb8469b509e2334fa4d018ac30f3e18cdb as builder
 ARG DEBIAN_FRONTEND=noninteractive
 
 #WORKDIR $GOPATH/src/go.k6.io/k6
@@ -26,7 +26,7 @@ RUN apt-get update &&  \
     apt-get install -y ca-certificates curl && \
     rm -rf /var/lib/apt/lists/*
 
-FROM alpine:3.15
+FROM alpine:3.15@sha256:19b4bcc4f60e99dd5ebdca0cbce22c503bbcff197549d7e19dab4f22254dc864
 RUN apk add --no-cache ca-certificates
 COPY --from=builder /root/go/bin/k6 /usr/bin/k6
 COPY --from=builder /usr/bin/chromium-browser /usr/bin/chromium-browser
